@@ -1,19 +1,20 @@
-package com.leonardo;
+package com.dominio.api.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.dominio.api.model.Pessoa;
+import com.dominio.api.service.PessoaService;
 
 @RestController
 @RequestMapping("/pessoas")
@@ -23,31 +24,27 @@ public class PessoaController {
 	private PessoaService service;
 
 	@GetMapping
-	public List<Pessoa> listar() {
+	public ResponseEntity<List<Pessoa>> listarPessoa() {
 		return service.listar();
 	}
 
 	@PostMapping
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public Pessoa cadastrar(@RequestBody Pessoa pessoa) {
+	public ResponseEntity<Pessoa> cadastrarPessoa(@RequestBody Pessoa pessoa) {
 		return service.cadastrar(pessoa);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Pessoa> buscar(@PathVariable Long id) {
-		Optional<Pessoa> pessoa = service.findById(id);
+	public ResponseEntity<Pessoa> buscarPessoa(@PathVariable Long id) {
+		return service.buscar(id);
+	}
 
-		if (pessoa.isPresent())
-			return ResponseEntity.ok(pessoa.get());
-
-		return ResponseEntity.notFound().build();
+	@PutMapping("/{id}")
+	public ResponseEntity<Pessoa> atualizarPessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
+		return service.atualizar(id, pessoa);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> remover(@PathVariable Long id) {
-
-		service.deleteById(id);
-
-		return ResponseEntity.noContent().build();
+	public ResponseEntity<Void> removerPessoa(@PathVariable Long id) {
+		return service.remover(id);
 	}
 }
