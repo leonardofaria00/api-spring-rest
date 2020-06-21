@@ -12,21 +12,24 @@ import com.dominio.api.model.Pessoa;
 import com.dominio.api.repository.PessoaRepository;
 
 @Service
-public class PessoaService {
+public class PessoaService implements CRUD_API<Pessoa>{
 
 	@Autowired
 	private PessoaRepository repository;
 
+	@Override
 	public ResponseEntity<List<Pessoa>> listar() {
 		List<Pessoa> pessoas = repository.findAll();
 		return ResponseEntity.ok().body(pessoas);
 	}
 
+	@Override
 	public ResponseEntity<Pessoa> cadastrar(Pessoa pessoa) {
 		repository.save(pessoa);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
+	@Override
 	public ResponseEntity<Pessoa> buscar(Long id) {
 		Optional<Pessoa> pessoa = repository.findById(id);
 
@@ -36,12 +39,14 @@ public class PessoaService {
 		return ResponseEntity.notFound().build();
 	}
 
+	@Override
 	public ResponseEntity<Void> remover(Long id) {
 		repository.deleteById(id);
 
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
-
+	
+	@Override
 	public ResponseEntity<Pessoa> atualizar(Long id, Pessoa pessoa) {
 		if (repository.existsById(id)) {
 			pessoa.setId(id);
