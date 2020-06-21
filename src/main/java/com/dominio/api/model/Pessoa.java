@@ -1,9 +1,15 @@
 package com.dominio.api.model;
 
+import java.time.OffsetDateTime;
+
+import javax.persistence.CollectionTable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class Pessoa {
@@ -12,6 +18,9 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+
+	@JsonProperty(access = Access.READ_ONLY)
+	private OffsetDateTime cadastro;
 
 	public Long getId() {
 		return id;
@@ -27,6 +36,14 @@ public class Pessoa {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public OffsetDateTime getDataCadastro() {
+		return cadastro;
+	}
+
+	public void setDataCadastro(OffsetDateTime cadastro) {
+		this.cadastro = cadastro;
 	}
 
 	@Override

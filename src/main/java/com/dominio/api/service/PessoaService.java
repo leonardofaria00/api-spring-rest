@@ -1,5 +1,6 @@
 package com.dominio.api.service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ import com.dominio.api.model.Pessoa;
 import com.dominio.api.repository.PessoaRepository;
 
 @Service
-public class PessoaService implements CRUD_API<Pessoa>{
+public class PessoaService implements CrudAPI<Pessoa> {
 
 	@Autowired
 	private PessoaRepository repository;
@@ -25,7 +26,11 @@ public class PessoaService implements CRUD_API<Pessoa>{
 
 	@Override
 	public ResponseEntity<Pessoa> cadastrar(Pessoa pessoa) {
+
+		pessoa.setDataCadastro(OffsetDateTime.now());
+
 		repository.save(pessoa);
+
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
@@ -45,7 +50,7 @@ public class PessoaService implements CRUD_API<Pessoa>{
 
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
-	
+
 	@Override
 	public ResponseEntity<Pessoa> atualizar(Long id, Pessoa pessoa) {
 		if (repository.existsById(id)) {
