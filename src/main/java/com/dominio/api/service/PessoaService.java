@@ -27,7 +27,7 @@ public class PessoaService implements CrudAPI<Pessoa> {
 	@Override
 	public ResponseEntity<Pessoa> cadastrar(Pessoa pessoa) {
 
-		pessoa.setDataCadastro(OffsetDateTime.now());
+		pessoa.setCadastro(OffsetDateTime.now());
 
 		repository.save(pessoa);
 

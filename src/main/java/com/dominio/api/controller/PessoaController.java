@@ -17,7 +17,7 @@ import com.dominio.api.model.Pessoa;
 import com.dominio.api.service.PessoaService;
 
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping(path = "/pessoas")
 public class PessoaController {
 
 	@Autowired

@@ -38,11 +38,11 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public OffsetDateTime getDataCadastro() {
+	public OffsetDateTime getCadastro() {
 		return cadastro;
 	}
 
-	public void setDataCadastro(OffsetDateTime cadastro) {
+	public void setCadastro(OffsetDateTime cadastro) {
 		this.cadastro = cadastro;
 	}
 
