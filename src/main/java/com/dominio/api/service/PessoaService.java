@@ -3,6 +3,7 @@ package com.dominio.api.service;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,12 @@ public class PessoaService implements CrudAPI<Pessoa, PessoaDTO> {
 	private ModelMapper modelmapper;
 
 	@Override
-	public ResponseEntity<List<Pessoa>> listar() {
+	public ResponseEntity<List<PessoaDTO>> listar() {
+
 		List<Pessoa> pessoas = repository.findAll();
-		return ResponseEntity.ok().body(pessoas);
+
+		List<PessoaDTO> dto = toListDTO(pessoas);
+		return ResponseEntity.ok().body(dto);
 	}
 
 	@Override
@@ -71,5 +75,9 @@ public class PessoaService implements CrudAPI<Pessoa, PessoaDTO> {
 
 	private PessoaDTO toDTO(Pessoa pessoa) {
 		return modelmapper.map(pessoa, PessoaDTO.class);
+	}
+
+	private List<PessoaDTO> toListDTO(List<Pessoa> pessoas) {
+		return pessoas.stream().map(pessoa -> toDTO(pessoa)).collect(Collectors.toList());
 	}
 }

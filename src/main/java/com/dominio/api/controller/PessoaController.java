@@ -25,7 +25,7 @@ public class PessoaController {
 	private PessoaService service;
 
 	@GetMapping
-	public ResponseEntity<List<Pessoa>> listarPessoa() {
+	public ResponseEntity<List<PessoaDTO>> listarPessoa() {
 		return service.listar();
 	}
 

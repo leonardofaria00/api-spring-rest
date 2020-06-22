@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface CrudAPI<E, DTO> {
 
-	ResponseEntity<List<E>> listar();
+	ResponseEntity<List<DTO>> listar();
 
 	ResponseEntity<E> cadastrar(E o);
 
