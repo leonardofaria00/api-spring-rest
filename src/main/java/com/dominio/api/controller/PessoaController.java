@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dominio.api.dto.PessoaDTO;
 import com.dominio.api.model.Pessoa;
 import com.dominio.api.service.PessoaService;
 
@@ -34,7 +35,7 @@ public class PessoaController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Pessoa> buscarPessoa(@PathVariable Long id) {
+	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable Long id) {
 		return service.buscar(id);
 	}
 

@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 
-public interface CrudAPI<E> {
+public interface CrudAPI<E, DTO> {
 
 	ResponseEntity<List<E>> listar();
 
 	ResponseEntity<E> cadastrar(E o);
 
-	ResponseEntity<E> buscar(Long id);
+	ResponseEntity<DTO> buscar(Long id);
 
 	ResponseEntity<Void> remover(Long id);
 
