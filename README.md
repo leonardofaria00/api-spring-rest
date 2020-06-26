@@ -1,8 +1,6 @@
 # Getting Started
 
-📚 💻 Spring Boot | Spring Web | Spring Data JPA | Hibernate | Flyway Migration | Lombok | ModelMapper | Maven | MySQL
-
-API Spring Rest com CRUD Básico
+API Spring Rest com CRUD Básico e algumas FEATURES
 
 ### End Points
 GET http://localhost:8080/pessoas
