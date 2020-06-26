@@ -2,7 +2,6 @@ package com.dominio.api.model;
 
 import java.time.OffsetDateTime;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
