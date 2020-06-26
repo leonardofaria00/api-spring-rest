@@ -6,9 +6,13 @@ API Spring Rest com CRUD Básico
 
 ## End Points
 GET http://localhost:8080/pessoas
+
 GET http://localhost:8080/pessoas/1
+
 PUT http://localhost:8080/pessoas/1
+
 POST http://localhost:8080/pessoas
+
 DELETE http://localhost:8080/pessoas/1 
 
 
