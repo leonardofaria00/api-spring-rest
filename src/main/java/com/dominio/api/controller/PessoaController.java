@@ -2,6 +2,10 @@ package com.dominio.api.controller;
 
 import java.util.List;
 
+import com.dominio.api.dto.PessoaDTO;
+import com.dominio.api.model.Pessoa;
+import com.dominio.api.service.PessoaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,10 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.dominio.api.dto.PessoaDTO;
-import com.dominio.api.model.Pessoa;
-import com.dominio.api.service.PessoaService;
 
 @RestController
 @RequestMapping(path = "/pessoas")
@@ -30,7 +30,7 @@ public class PessoaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<Pessoa> cadastrarPessoa(@RequestBody Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> cadastrarPessoa(@RequestBody Pessoa pessoa) {
 		return service.cadastrar(pessoa);
 	}
 
@@ -40,7 +40,7 @@ public class PessoaController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Pessoa> atualizarPessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
 		return service.atualizar(id, pessoa);
 	}
 
