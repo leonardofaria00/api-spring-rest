@@ -5,15 +5,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.dominio.api.dto.PessoaDTO;
-import com.dominio.api.model.Pessoa;
-import com.dominio.api.repository.PessoaRepository;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.dominio.api.dto.PessoaDTO;
+import com.dominio.api.exception.NegocioException;
+import com.dominio.api.model.Pessoa;
+import com.dominio.api.repository.PessoaRepository;
 
 @Service
 public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
@@ -73,7 +74,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {
-			return ResponseEntity.notFound().build();
+			throw new NegocioException("Pessoa não encontrada!");
 		}
 
 		return ResponseEntity.noContent().build();
