@@ -14,7 +14,7 @@ public class CorsConfig {
 
 			@Override
 			public void addCorsMappings(CorsRegistry cors) {
-				cors.addMapping("pathPattern").allowedOrigins("http://localhost:9000");
+				cors.addMapping("pathPattern").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}
