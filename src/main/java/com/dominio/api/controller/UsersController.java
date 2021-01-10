@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dominio.api.dto.PessoaDTO;
-import com.dominio.api.model.Pessoa;
-import com.dominio.api.service.PessoaService;
+import com.dominio.api.model.Users;
+import com.dominio.api.service.UsersService;
 
 @RestController
 @RequestMapping(path = "/users")
-public class PessoaController {
+public class UsersController {
 
 	@Autowired
-	private PessoaService service;
+	private UsersService service;
 
 	@GetMapping
 	public ResponseEntity<List<PessoaDTO>> listarPessoas() {
@@ -31,7 +31,7 @@ public class PessoaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<PessoaDTO> cadastrarPessoa(@Validated @RequestBody Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> cadastrarPessoa(@Validated @RequestBody Users pessoa) {
 		return service.cadastrar(pessoa);
 	}
 
@@ -41,7 +41,7 @@ public class PessoaController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable Long id, @RequestBody Users pessoa) {
 		return service.atualizar(id, pessoa);
 	}
 

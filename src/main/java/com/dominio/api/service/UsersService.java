@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 
 import com.dominio.api.dto.PessoaDTO;
 import com.dominio.api.exception.NegocioException;
-import com.dominio.api.model.Pessoa;
-import com.dominio.api.repository.PessoaRepository;
+import com.dominio.api.model.Users;
+import com.dominio.api.repository.UsersRepository;
 
 @Service
-public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
+public class UsersService implements CrudAPIService<Users, PessoaDTO> {
 
 	@Autowired
-	private PessoaRepository repository;
+	private UsersRepository repository;
 
 	@Autowired
 	private ModelMapper modelmapper;
@@ -28,7 +28,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	@Override
 	public ResponseEntity<List<PessoaDTO>> listar() {
 
-		List<Pessoa> pessoas = repository.findAll();
+		List<Users> pessoas = repository.findAll();
 
 		if (!pessoas.isEmpty()) {
 			List<PessoaDTO> dto = toListDTO(pessoas);
@@ -38,9 +38,9 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> cadastrar(Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> cadastrar(Users pessoa) {
 
-		pessoa.setCadastro(OffsetDateTime.now());
+		pessoa.setCreatedAt(OffsetDateTime.now());
 
 		repository.save(pessoa);
 
@@ -50,7 +50,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	@Override
 	public ResponseEntity<PessoaDTO> buscar(Long id) {
 
-		Optional<Pessoa> pessoa = repository.findById(id);
+		Optional<Users> pessoa = repository.findById(id);
 
 		if (pessoa.isPresent()) {
 			PessoaDTO dto = toDTO(pessoa.get());
@@ -60,7 +60,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> atualizar(Long id, Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizar(Long id, Users pessoa) {
 		if (repository.existsById(id)) {
 			pessoa.setId(id);
 			repository.save(pessoa);
@@ -81,12 +81,12 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	}
 
 	@Override
-	public PessoaDTO toDTO(Pessoa pessoa) {
+	public PessoaDTO toDTO(Users pessoa) {
 		return modelmapper.map(pessoa, PessoaDTO.class);
 	}
 
 	@Override
-	public List<PessoaDTO> toListDTO(List<Pessoa> pessoas) {
+	public List<PessoaDTO> toListDTO(List<Users> pessoas) {
 		return pessoas.stream().map(pessoa -> toDTO(pessoa)).collect(Collectors.toList());
 	}
 }

@@ -8,5 +8,5 @@ import lombok.Setter;
 public class PessoaDTO {
 
 	private Long id;
-	private String nome;
+	private String name;
 }

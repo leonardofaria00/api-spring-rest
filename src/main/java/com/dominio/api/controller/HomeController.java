@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "/home")
 public class HomeController {
 
 	private static final String template = "Hello, %s!";
