@@ -10,7 +10,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - C:/docker_databases/mongodb:/docker-entrypoint-initdb.d/"
+      - C:/docker_databases/mongodb:/etc/mongo"
       # - "$PWD/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
 
   mongo-express:
