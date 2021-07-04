@@ -1,1 +1,1 @@
-INSERT INTO `db_api`.`pessoa` (`nome`) VALUES ('Leonardo Faria dos Santos');
+INSERT INTO `db_api_spring_rest`.`pessoa` (`nome`) VALUES ('Leonardo Faria dos Santos');

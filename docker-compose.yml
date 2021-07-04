@@ -1,18 +1,19 @@
-version: "3.7"
+version: '3.7'
 
 services:
-  db:
+  mysql:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_DATABASE: db_api_spring_rest
       MYSQL_ROOT_USE: root
-      MYSQL_DATABASE: db_api
+      MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3306:3306"
-    volumes: 
+      - '3306:3306'
+    volumes:
       - C:/docker_databases/mysql:/var/lib/mysql
+    
     # command:
-    #   - revoke all on db_api.* from 'root'@'%';
-    #   - grant select, insert, delete, update on db_api.* to 'root'@'%';
+    #   - revoke all on db_api_spring_rest.* from 'root'@'%';
+    #   - grant select, insert, delete, update on db_api_spring_rest.* to 'root'@'%';
     
