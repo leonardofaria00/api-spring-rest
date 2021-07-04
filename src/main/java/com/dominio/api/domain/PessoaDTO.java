@@ -1,4 +1,4 @@
-package com.dominio.api.dto;
+package com.dominio.api.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class PessoaDTO {
 
-	private Long id;
+	private String id;
 	private String nome;
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dominio.api.dto.PessoaDTO;
+import com.dominio.api.domain.PessoaDTO;
 import com.dominio.api.model.Pessoa;
 import com.dominio.api.service.PessoaService;
 
@@ -36,22 +36,22 @@ public class PessoaController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable final Long id) {
+	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable final String id) {
 		return service.buscarPorId(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable final Long id, @RequestBody final Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable final String id, @RequestBody final Pessoa pessoa) {
 		return service.atualizarPorId(id, pessoa);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> removerPessoa(@PathVariable final Long id) {
+	public ResponseEntity<Void> removerPessoa(@PathVariable final String id) {
 		return service.removerPorId(id);
 	}
 
 	@GetMapping("/mock/{id}")
-	public Pessoa buscarPorIdMock(@PathVariable final Long id) {
+	public Pessoa buscarPorIdMock(@PathVariable final String id) {
 		return service.buscarPorIdMock(id);
 	}
 }

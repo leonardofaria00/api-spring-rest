@@ -1,11 +1,9 @@
 package com.dominio.api.model;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -14,18 +12,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Document(collection = "pessoa")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Pessoa {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private String id;
 	private String nome;
 
 	@JsonProperty(access = Access.READ_ONLY)
-	private OffsetDateTime cadastro;
+	private LocalDateTime cadastro;
 
 }

@@ -1,6 +1,6 @@
 package com.dominio.api.service;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.dominio.api.dto.PessoaDTO;
+import com.dominio.api.domain.PessoaDTO;
 import com.dominio.api.exception.NegocioException;
 import com.dominio.api.model.Pessoa;
 import com.dominio.api.repository.PessoaRepository;
@@ -40,7 +40,7 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 	@Override
 	public ResponseEntity<PessoaDTO> cadastrar(Pessoa pessoa) {
 
-		pessoa.setCadastro(OffsetDateTime.now());
+		pessoa.setCadastro(LocalDateTime.now());
 
 		repository.save(pessoa);
 
@@ -48,7 +48,7 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> buscarPorId(Long id) {
+	public ResponseEntity<PessoaDTO> buscarPorId(String id) {
 
 		Optional<Pessoa> pessoa = repository.findById(id);
 
@@ -60,17 +60,18 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> atualizarPorId(Long id, Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPorId(String id, Pessoa pessoa) {
 		if (repository.existsById(id)) {
 			pessoa.setId(id);
 			repository.save(pessoa);
-			return ResponseEntity.status(HttpStatus.OK).build();// Demostrando outras formas de implementar
+			return ResponseEntity.status(HttpStatus.OK).build();// Demostrando outras formas de implementar retornos com
+																// o ENUM HttpStatus.
 		}
-		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();// Demostrando outras formas de implementar
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 
 	@Override
-	public ResponseEntity<Void> removerPorId(Long id) {
+	public ResponseEntity<Void> removerPorId(String id) {
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {
@@ -90,7 +91,7 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 		return pessoas.stream().map(pessoa -> toDTO(pessoa)).collect(Collectors.toList());
 	}
 
-	public Pessoa buscarPorIdMock(Long id) {
-		return new Pessoa(1L, "Leonardo", OffsetDateTime.now());
+	public Pessoa buscarPorIdMock(String id) {
+		return new Pessoa("xpto", "Leonardo", LocalDateTime.now());
 	}
 }
