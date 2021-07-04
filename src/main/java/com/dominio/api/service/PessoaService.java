@@ -17,7 +17,7 @@ import com.dominio.api.model.Pessoa;
 import com.dominio.api.repository.PessoaRepository;
 
 @Service
-public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
+public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> {
 
 	@Autowired
 	private PessoaRepository repository;
@@ -26,7 +26,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	private ModelMapper modelmapper;
 
 	@Override
-	public ResponseEntity<List<PessoaDTO>> listar() {
+	public ResponseEntity<List<PessoaDTO>> listarTodos() {
 
 		List<Pessoa> pessoas = repository.findAll();
 
@@ -48,7 +48,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> buscar(Long id) {
+	public ResponseEntity<PessoaDTO> buscarPorId(Long id) {
 
 		Optional<Pessoa> pessoa = repository.findById(id);
 
@@ -60,7 +60,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> atualizar(Long id, Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPorId(Long id, Pessoa pessoa) {
 		if (repository.existsById(id)) {
 			pessoa.setId(id);
 			repository.save(pessoa);
@@ -70,7 +70,7 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	}
 
 	@Override
-	public ResponseEntity<Void> remover(Long id) {
+	public ResponseEntity<Void> removerPorId(Long id) {
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {
@@ -88,5 +88,9 @@ public class PessoaService implements CrudAPIService<Pessoa, PessoaDTO> {
 	@Override
 	public List<PessoaDTO> toListDTO(List<Pessoa> pessoas) {
 		return pessoas.stream().map(pessoa -> toDTO(pessoa)).collect(Collectors.toList());
+	}
+
+	public Pessoa buscarPorIdMock(Long id) {
+		return new Pessoa(1L, "Leonardo", OffsetDateTime.now());
 	}
 }

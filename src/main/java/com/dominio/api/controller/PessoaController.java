@@ -27,7 +27,7 @@ public class PessoaController {
 
 	@GetMapping
 	public ResponseEntity<List<PessoaDTO>> listarPessoas() {
-		return service.listar();
+		return service.listarTodos();
 	}
 
 	@PostMapping
@@ -37,16 +37,21 @@ public class PessoaController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable final Long id) {
-		return service.buscar(id);
+		return service.buscarPorId(id);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable final Long id, @RequestBody final Pessoa pessoa) {
-		return service.atualizar(id, pessoa);
+		return service.atualizarPorId(id, pessoa);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> removerPessoa(@PathVariable final Long id) {
-		return service.remover(id);
+		return service.removerPorId(id);
+	}
+
+	@GetMapping("/mock/{id}")
+	public Pessoa buscarPorIdMock(@PathVariable final Long id) {
+		return service.buscarPorIdMock(id);
 	}
 }

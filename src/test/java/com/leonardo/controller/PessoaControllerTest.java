@@ -35,15 +35,14 @@ public class PessoaControllerTest {
 	@Test
 	public void deveRetornarSucesso_QuandoBuscarPessoa() {
 
-		when(this.pessoaService.buscarPorIdMock(1L))
-		.thenReturn(new Pessoa(1L, "Leonardo", OffsetDateTime.now()));
+		when(this.pessoaService.buscarPorIdMock(1L)).thenReturn(new Pessoa(1L, "Leonardo", OffsetDateTime.now()));
 
 		// @formatter:off
 		RestAssuredMockMvc
 		.given()
 			.accept(ContentType.JSON)
 		.when()
-			.get("/users/{id}", 1L)
+			.get("/users/mock/{id}", 1L)
 		.then().statusCode(HttpStatus.OK.value());
 		// @formatter:on
 
