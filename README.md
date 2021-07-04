@@ -75,6 +75,7 @@ This project will serve as the basic architecture for implementing any spring pr
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
 - [Spring Boot Dev tools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)
+- [Swagger](https://swagger.io/)
 - [Flywaydb](https://flywaydb.org/)
 - [MySQL](https://www.mysql.com/)
 - [Lombok](https://projectlombok.org/)
@@ -112,23 +113,8 @@ git clone https://github.com/leonardofaria00/api-spring-rest.git
 ## Usage
 
 <!-- Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources. -->
-Users
 
-GET http://localhost:8080/users
-
-GET http://localhost:8080/users/1
-
-PUT http://localhost:8080/users/1
-
-POST http://localhost:8080/users
-
-DELETE http://localhost:8080/users/1 
-
-Upload Files
-
-GET http://localhost:8080/upload
-
-POST http://localhost:8080/upload
+Run: http://localhost:8080/swagger-ui.html
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
 
