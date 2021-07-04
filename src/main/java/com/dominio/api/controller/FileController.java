@@ -19,7 +19,7 @@ import com.dominio.api.model.Files;
 import com.dominio.api.repository.FileRepository;
 
 @RestController
-@RequestMapping(path = "/upload")
+@RequestMapping(path = "/file")
 public class FileController {
 
 	@Autowired
@@ -27,13 +27,11 @@ public class FileController {
 
 	@GetMapping
 	public ResponseEntity<Iterable<Files>> getAllUsers() {
-
 		return ResponseEntity.ok(fileRepository.findAll());
 	}
 
 	@PostMapping
 	public ResponseEntity<Object> uploadFiles(@RequestParam("file") MultipartFile file) {
-
 		try {
 			ArrayList<String> list = new ArrayList<String>();
 			list.add("image/jpeg");
