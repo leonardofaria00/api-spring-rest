@@ -57,8 +57,8 @@
 		  <groupId>org.apache.httpcomponents</groupId>
 		  <artifactId>httpclient</artifactId>
 		  <scope>test</scope>
-	</dependency>
-	<dependency>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -69,12 +69,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	<!-- https://mvnrepository.com/artifact/io.rest-assured/spring-mock-mvc -->
-	<dependency>
-	    <groupId>io.rest-assured</groupId>
-	    <artifactId>spring-mock-mvc</artifactId>
-	    <scope>test</scope>
-	</dependency>		
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/spring-mock-mvc -->
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>spring-mock-mvc</artifactId>
+		    <scope>test</scope>
+		</dependency>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
