@@ -31,22 +31,22 @@ public class PessoaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<PessoaDTO> cadastrarPessoa(@Validated @RequestBody Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> cadastrarPessoa(@Validated @RequestBody final Pessoa pessoa) {
 		return service.cadastrar(pessoa);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable Long id) {
+	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable final Long id) {
 		return service.buscar(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable Long id, @RequestBody Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable final Long id, @RequestBody final Pessoa pessoa) {
 		return service.atualizar(id, pessoa);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> removerPessoa(@PathVariable Long id) {
+	public ResponseEntity<Void> removerPessoa(@PathVariable final Long id) {
 		return service.remover(id);
 	}
 }
