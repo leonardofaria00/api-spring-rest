@@ -1,4 +1,4 @@
-package com.dominio.api.controller;
+package com.dominio.api.controller.file;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dominio.api.model.Files;
-import com.dominio.api.repository.FileRepository;
+import com.dominio.api.model.file.Files;
+import com.dominio.api.repository.file.FileRepository;
 
 @RestController
 @RequestMapping(path = "/file")

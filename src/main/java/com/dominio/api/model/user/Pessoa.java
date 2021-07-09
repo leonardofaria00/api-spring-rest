@@ -1,4 +1,4 @@
-package com.dominio.api.model;
+package com.dominio.api.model.user;
 
 import java.time.OffsetDateTime;
 

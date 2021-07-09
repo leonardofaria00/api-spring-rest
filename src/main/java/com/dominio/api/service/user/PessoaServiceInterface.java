@@ -1,4 +1,4 @@
-package com.dominio.api.service;
+package com.dominio.api.service.user;
 
 import java.util.List;
 

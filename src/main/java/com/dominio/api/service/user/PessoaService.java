@@ -1,4 +1,4 @@
-package com.dominio.api.service;
+package com.dominio.api.service.user;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -11,10 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.dominio.api.dto.PessoaDTO;
+import com.dominio.api.dto.user.PessoaDTO;
 import com.dominio.api.exception.NegocioException;
-import com.dominio.api.model.Pessoa;
-import com.dominio.api.repository.PessoaRepository;
+import com.dominio.api.model.user.Pessoa;
+import com.dominio.api.repository.user.PessoaRepository;
 
 @Service
 public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> {

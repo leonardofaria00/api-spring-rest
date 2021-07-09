@@ -1,4 +1,4 @@
-package com.dominio.api.model;
+package com.dominio.api.model.file;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

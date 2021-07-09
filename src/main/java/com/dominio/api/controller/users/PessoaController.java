@@ -1,4 +1,4 @@
-package com.dominio.api.controller;
+package com.dominio.api.controller.users;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dominio.api.dto.PessoaDTO;
-import com.dominio.api.model.Pessoa;
-import com.dominio.api.service.PessoaService;
+import com.dominio.api.dto.user.PessoaDTO;
+import com.dominio.api.model.user.Pessoa;
+import com.dominio.api.service.user.PessoaService;
 
 @RestController
 @RequestMapping(path = "/users")

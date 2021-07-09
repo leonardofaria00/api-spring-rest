@@ -1,4 +1,4 @@
-package com.leonardo.controller;
+package com.dominio.controller.user;
 
 import static org.mockito.Mockito.when;
 
@@ -11,9 +11,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 
-import com.dominio.api.controller.PessoaController;
-import com.dominio.api.model.Pessoa;
-import com.dominio.api.service.PessoaService;
+import com.dominio.api.controller.users.PessoaController;
+import com.dominio.api.model.user.Pessoa;
+import com.dominio.api.service.user.PessoaService;
 
 import io.restassured.http.ContentType;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;

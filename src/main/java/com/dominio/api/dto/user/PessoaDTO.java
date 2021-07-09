@@ -1,4 +1,4 @@
-package com.dominio.api.dto;
+package com.dominio.api.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;
