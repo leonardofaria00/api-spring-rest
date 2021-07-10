@@ -17,7 +17,7 @@ public class NasaController {
 	private NasaService service;
 
 	@GetMapping
-	public ResponseEntity<Nasa> getImagesNasa() {
+	public ResponseEntity<Nasa> getNasaAPI() {
 		return this.service.getNasaAPI();
 	}
 }
