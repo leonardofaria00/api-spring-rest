@@ -26,12 +26,12 @@ public class FileController {
 	private FileRepository fileRepository;
 
 	@GetMapping
-	public ResponseEntity<Iterable<Files>> getAllUsers() {
+	public ResponseEntity<Iterable<Files>> getAllFiles() {
 		return ResponseEntity.ok(fileRepository.findAll());
 	}
 
 	@PostMapping
-	public ResponseEntity<Object> uploadFiles(@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<Object> AddFiles(@RequestParam("file") MultipartFile file) {
 		try {
 			ArrayList<String> list = new ArrayList<String>();
 			list.add("image/jpeg");
