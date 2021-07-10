@@ -12,8 +12,12 @@ services:
       - '3306:3306'
     volumes:
       - C:/docker_databases/mysql:/var/lib/mysql
-    
+
     # command:
     #   - revoke all on db_api_spring_rest.* from 'root'@'%';
     #   - grant select, insert, delete, update on db_api_spring_rest.* to 'root'@'%';
-    
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - '5672:5672'
+      - '15672:15672'

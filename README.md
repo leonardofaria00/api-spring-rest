@@ -73,17 +73,17 @@ This project will serve as the basic architecture for implementing any spring pr
 
 - [Java 8](https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
 - [Spring Boot](https://spring.io/projects/spring-boot)
+- [Swagger](https://swagger.io/)
 - [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
 - [Spring Boot Dev tools](https://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/html/using-boot-devtools.html)
-- [Swagger](https://swagger.io/)
+- [RabbitMQ](https://www.rabbitmq.com/download.html)
+- [Model Mapper](http://modelmapper.org/)
 - [Flywaydb](https://flywaydb.org/)
 - [MySQL](https://www.mysql.com/)
+- [Docker](https://www.docker.com/)
 - [Lombok](https://projectlombok.org/)
-- [Model Mapper](http://modelmapper.org/)
 - [HTTP Client](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html)
 - [Maven](https://maven.apache.org/)
-- [Docker](https://www.docker.com/)
-
 
 <!-- GETTING STARTED -->
 
@@ -150,22 +150,22 @@ Leonardo F. Santos - [My profile](https://linktr.ee/faria.leo) - leonardofaria00
 
 Project Link: [https://github.com/leonardofaria00/api-spring-rest](https://github.com/leonardofaria00/api-spring-rest)
 
-
 ## Reference Documentation
+
 For further reference, please consider the following sections:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
-
+- [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
+- [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/)
+- [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/maven-plugin/reference/html/#build-image)
+- [Spring Web](https://docs.spring.io/spring-boot/docs/2.3.1.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
 
 ## Guides
+
 The following guides illustrate how to use some features concretely:
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+- [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
+- [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
+- [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 
 <!-- ACKNOWLEDGEMENTS -->
 
