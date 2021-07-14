@@ -10,7 +10,7 @@ import com.dominio.api.ApiApplication;
 
 /*
  * Messaging with RabbitMQ
- * https://spring.io/guides/gs/messaging-rabbitmq/
+ * Document https://spring.io/guides/gs/messaging-rabbitmq/
  */
 @Component
 public class Runner implements CommandLineRunner {
@@ -25,7 +25,7 @@ public class Runner implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Enviando message...");
+		System.out.println("Send message...");
 		rabbitTemplate.convertAndSend(ApiApplication.nomeDeTrocaDoTopico, "foo.bar.baz", "Olá para RabbitMQ!");
 		receptor.getLatch().await(10000, TimeUnit.MILLISECONDS);
 	}
