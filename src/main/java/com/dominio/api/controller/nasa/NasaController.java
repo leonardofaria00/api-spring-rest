@@ -10,7 +10,7 @@ import com.dominio.api.model.nasa.Nasa;
 import com.dominio.api.service.nasa.NasaService;
 
 @RestController
-@RequestMapping(path = "/nasa")
+@RequestMapping(path = "/nasa/v1")
 public class NasaController {
 
 	@Autowired

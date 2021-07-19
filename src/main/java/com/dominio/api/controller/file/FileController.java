@@ -19,7 +19,7 @@ import com.dominio.api.model.file.Files;
 import com.dominio.api.repository.file.FileRepository;
 
 @RestController
-@RequestMapping(path = "/file")
+@RequestMapping(path = "/file/v1")
 public class FileController {
 
 	@Autowired

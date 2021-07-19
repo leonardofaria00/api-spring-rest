@@ -1,5 +1,6 @@
 package com.dominio.api.service.user;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +41,7 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 	@Override
 	public ResponseEntity<PessoaDTO> cadastrar(Pessoa pessoa) {
 
-		pessoa.setCadastro(OffsetDateTime.now());
+		pessoa.setCadastro(LocalDate.now());
 
 		repository.save(pessoa);
 
@@ -48,7 +49,7 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> buscarPorId(Long id) {
+	public ResponseEntity<PessoaDTO> buscarPorId(String id) {
 
 		Optional<Pessoa> pessoa = repository.findById(id);
 
@@ -60,7 +61,7 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 	}
 
 	@Override
-	public ResponseEntity<PessoaDTO> atualizarPorId(Long id, Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPorId(String id, Pessoa pessoa) {
 		if (repository.existsById(id)) {
 			pessoa.setId(id);
 			repository.save(pessoa);
@@ -70,7 +71,7 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 	}
 
 	@Override
-	public ResponseEntity<Void> removerPorId(Long id) {
+	public ResponseEntity<Void> removerPorId(String id) {
 		try {
 			repository.deleteById(id);
 		} catch (Exception e) {
@@ -87,10 +88,10 @@ public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> 
 
 	@Override
 	public List<PessoaDTO> toListDTO(List<Pessoa> pessoas) {
-		return pessoas.stream().map(pessoa -> toDTO(pessoa)).collect(Collectors.toList());
+		return pessoas.stream().map(this::toDTO).collect(Collectors.toList());
 	}
 
 	public Pessoa buscarPorIdMock(Long id) {
-		return new Pessoa(1L, "Leonardo", OffsetDateTime.now());
+		return new Pessoa("1", "Leonardo", LocalDate.now());
 	}
 }

@@ -19,7 +19,7 @@ import com.dominio.api.model.user.Pessoa;
 import com.dominio.api.service.user.PessoaService;
 
 @RestController
-@RequestMapping(path = "/users")
+@RequestMapping(path = "/users/v1")
 public class PessoaController {
 
 	@Autowired
@@ -36,17 +36,17 @@ public class PessoaController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable final Long id) {
+	public ResponseEntity<PessoaDTO> buscarPessoa(@PathVariable final String id) {
 		return service.buscarPorId(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable final Long id, @RequestBody final Pessoa pessoa) {
+	public ResponseEntity<PessoaDTO> atualizarPessoa(@PathVariable final String id, @RequestBody final Pessoa pessoa) {
 		return service.atualizarPorId(id, pessoa);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> removerPessoa(@PathVariable final Long id) {
+	public ResponseEntity<Void> removerPessoa(@PathVariable final String id) {
 		return service.removerPorId(id);
 	}
 

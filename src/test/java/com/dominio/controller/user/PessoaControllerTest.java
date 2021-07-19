@@ -2,6 +2,7 @@ package com.dominio.controller.user;
 
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +36,7 @@ public class PessoaControllerTest {
 	@Test
 	public void deveRetornarSucesso_QuandoBuscarPessoa() {
 
-		when(this.pessoaService.buscarPorIdMock(1L)).thenReturn(new Pessoa(1L, "Leonardo", OffsetDateTime.now()));
+		when(this.pessoaService.buscarPorIdMock(1L)).thenReturn(new Pessoa("1", "Leonardo", LocalDate.now()));
 
 		// @formatter:off
 		RestAssuredMockMvc

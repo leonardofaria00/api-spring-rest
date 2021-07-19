@@ -1,11 +1,10 @@
 package com.dominio.api.repository.nasa;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.dominio.api.model.nasa.Nasa;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.dominio.api.model.nasa.Nasa;
-
 @Repository
-public interface NasaReposiroty extends JpaRepository<Nasa, Long> {
+public interface NasaReposiroty extends MongoRepository<Nasa, String> {
 
 }

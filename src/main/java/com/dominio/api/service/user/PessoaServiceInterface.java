@@ -10,11 +10,11 @@ public interface PessoaServiceInterface<E, DTO> {
 
 	ResponseEntity<DTO> cadastrar(E entity);
 
-	ResponseEntity<DTO> buscarPorId(Long id);
+	ResponseEntity<DTO> buscarPorId(String id);
 
-	ResponseEntity<DTO> atualizarPorId(Long id, E entity);
+	ResponseEntity<DTO> atualizarPorId(String id, E entity);
 
-	ResponseEntity<Void> removerPorId(Long id);
+	ResponseEntity<Void> removerPorId(String id);
 
 	DTO toDTO(E entity);
 
