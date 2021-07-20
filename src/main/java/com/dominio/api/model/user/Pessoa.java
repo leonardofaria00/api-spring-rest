@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Document(collection = "User")
 @Data
@@ -21,12 +21,12 @@ import java.time.LocalDate;
 public class Pessoa {
 
     @Id
-    private String id;
-    private String nome;
+    private String uuid;
+    private String name;
+    private Integer age;
 
     @JsonProperty(access = Access.READ_ONLY)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
-    private LocalDate cadastro;
-
+    private LocalDateTime createdAt;
 }

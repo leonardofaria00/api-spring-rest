@@ -3,6 +3,7 @@ package com.dominio.controller.user;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -36,14 +37,14 @@ public class PessoaControllerTest {
 	@Test
 	public void deveRetornarSucesso_QuandoBuscarPessoa() {
 
-		when(this.pessoaService.buscarPorIdMock(1L)).thenReturn(new Pessoa("1", "Leonardo", LocalDate.now()));
+		when(this.pessoaService.buscarPorIdMock("")).thenReturn(new Pessoa("", "João", 21, LocalDateTime.now()));
 
 		// @formatter:off
 		RestAssuredMockMvc
 		.given()
 			.accept(ContentType.JSON)
 		.when()
-			.get("/users/mock/{id}", 1L)
+			.get("/users/mock/{uuid}", 1L)
 		.then().statusCode(HttpStatus.OK.value());
 		// @formatter:on
 

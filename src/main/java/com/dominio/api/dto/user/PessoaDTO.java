@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class PessoaDTO {
 
-	private String id;
-	private String nome;
+    private String uuid;
+    private String name;
+    private Integer age;
 }
