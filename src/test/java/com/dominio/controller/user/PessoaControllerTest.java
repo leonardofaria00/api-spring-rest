@@ -37,7 +37,7 @@ public class PessoaControllerTest {
 	@Test
 	public void deveRetornarSucesso_QuandoBuscarPessoa() {
 
-		when(this.pessoaService.buscarPorIdMock("")).thenReturn(new Pessoa("", "João", 21, LocalDateTime.now()));
+		when(this.pessoaService.buscarPorIdMock("")).thenReturn(new Pessoa("", "João", 21, LocalDateTime.now(), LocalDateTime.now()));
 
 		// @formatter:off
 		RestAssuredMockMvc

@@ -11,22 +11,22 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - C:/docker_databases/mongodb:/data/db
-
-  # mongo-express:
-  #   image: mongo-express
-  #   restart: always
-  #   ports:
-  #     - '8081:8081'
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME:
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD:
+      - C:/Desenvolvimento/docker_databases/mongodb:/data/db
 
   rabbitmq:
     image: rabbitmq:management
     ports:
       - '5672:5672'
       - '15672:15672'
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - '8081:8081'
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME:
+      ME_CONFIG_MONGODB_ADMINPASSWORD:
 
   mysql:
     image: mysql:5.7
@@ -38,4 +38,4 @@ services:
     ports:
       - '3306:3306'
     volumes:
-      - C:/docker_databases/mysql:/var/lib/mysql
+      - C:/Desenvolvimento/docker_databases/mysql:/var/lib/mysql

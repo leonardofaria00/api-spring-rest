@@ -1,5 +1,6 @@
 package com.dominio.api.model.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -28,5 +29,12 @@ public class Pessoa {
     @JsonProperty(access = Access.READ_ONLY)
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonIgnore
     private LocalDateTime createdAt;
+
+    @JsonProperty(access = Access.READ_ONLY)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonIgnore
+    private LocalDateTime updatedAt;
 }
