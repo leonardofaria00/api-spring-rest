@@ -1,116 +1,115 @@
 package com.dominio.api.service.user;
 
-import com.dominio.api.dto.user.PessoaDTO;
-import com.dominio.api.exception.NegocioException;
-import com.dominio.api.model.user.Pessoa;
-import com.dominio.api.repository.user.PessoaRepository;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import com.dominio.api.dto.user.PessoaDTO;
+import com.dominio.api.exception.NegocioException;
+import com.dominio.api.model.user.Pessoa;
+import com.dominio.api.repository.user.PessoaRepository;
 
 @Service
 public class PessoaService implements PessoaServiceInterface<Pessoa, PessoaDTO> {
 
-    @Autowired
-    private PessoaRepository repository;
+	@Autowired
+	private PessoaRepository repository;
 
-    @Autowired
-    private ModelMapper modelmapper;
+	@Autowired
+	private ModelMapper modelmapper;
 
-    @Override
-    public ResponseEntity<List<PessoaDTO>> listarTodos() {
+	@Override
+	public ResponseEntity<List<PessoaDTO>> listarTodos() {
+		List<Pessoa> pessoas = repository.findAll();
+		if (!pessoas.isEmpty()) {
+			List<PessoaDTO> dto = toListDTO(pessoas);
+			return ResponseEntity.ok().body(dto);
+		}
+		return ResponseEntity.noContent().build();
+	}
 
-        List<Pessoa> pessoas = repository.findAll();
+	@Override
+	public ResponseEntity<PessoaDTO> cadastrar(final Pessoa pessoa) {
+		validateUsertoSave(pessoa);
+		try {
+			repository.save(this.cleanAndSetDateUserToSave(pessoa));
+		} catch (Exception e) {
+			throw new NegocioException("Error to save User.");
+		}
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
 
-        if (!pessoas.isEmpty()) {
-            List<PessoaDTO> dto = toListDTO(pessoas);
-            return ResponseEntity.ok().body(dto);
-        }
-        return ResponseEntity.noContent().build();
-    }
+	@Override
+	public ResponseEntity<PessoaDTO> buscarPorId(String uuid) {
+		Optional<Pessoa> pessoa = repository.findById(uuid);
+		if (pessoa.isPresent()) {
+			PessoaDTO dto = toDTO(pessoa.get());
+			return ResponseEntity.ok().body(dto);
+		}
+		return ResponseEntity.noContent().build();
+	}
 
-    @Override
-    public ResponseEntity<PessoaDTO> cadastrar(final Pessoa pessoa) {
+	@Override
+	public ResponseEntity<PessoaDTO> atualizarPorId(final String uuid, Pessoa pessoa) {
+		validateUsertoSave(pessoa);
+		if (repository.existsById(uuid)) {
+			repository.save(this.cleanAndSetDateUserToUpdate(uuid, pessoa));
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
 
-        this.validateUsertoSave(pessoa);
+	@Override
+	public ResponseEntity<Void> removerPorId(String uuid) {
+		try {
+			repository.deleteById(uuid);
+		} catch (Exception e) {
+			throw new NegocioException("Pessoa não encontrada!");
+		}
+		return ResponseEntity.noContent().build();
+	}
 
-        try {
-            repository.save(this.cleanDataToSave(pessoa));
-        } catch (Exception e) {
-            throw new NegocioException("Error to save User.");
-        }
+	@Override
+	public PessoaDTO toDTO(Pessoa pessoa) {
+		return modelmapper.map(pessoa, PessoaDTO.class);
+	}
 
-        return ResponseEntity.status(HttpStatus.CREATED).build();
-    }
+	@Override
+	public List<PessoaDTO> toListDTO(List<Pessoa> pessoas) {
+		return pessoas.stream().map(this::toDTO).collect(Collectors.toList());
+	}
 
-    @Override
-    public ResponseEntity<PessoaDTO> buscarPorId(String uuid) {
+	private void validateUsertoSave(Pessoa pessoa) {
+		if (pessoa.getName().trim().isEmpty()) {
+			throw new NegocioException("Name cannot be empty");
+		}
+		if (pessoa.getAge() == null || pessoa.getAge() <= 0 || pessoa.getAge() > 120) {
+			throw new NegocioException("Invalid age, enter an age between 1 and 120 years.");
+		}
+	}
 
-        Optional<Pessoa> pessoa = repository.findById(uuid);
+	private Pessoa cleanAndSetDateUserToSave(Pessoa pessoa) {
+		pessoa.setName(pessoa.getName().trim());
+		pessoa.setEmail(pessoa.getEmail().trim());
+		pessoa.setCreatedAt(LocalDateTime.now());
+		return pessoa;
+	}
 
-        if (pessoa.isPresent()) {
-            PessoaDTO dto = toDTO(pessoa.get());
-            return ResponseEntity.ok().body(dto);
-        }
-        return ResponseEntity.noContent().build();
-    }
+	private Pessoa cleanAndSetDateUserToUpdate(String uuid, Pessoa pessoa) {
+		pessoa.setUuid(uuid);
+		pessoa.setName(pessoa.getName().trim());
+		pessoa.setUpdatedAt(LocalDateTime.now());
+		return pessoa;
+	}
 
-    @Override
-    public ResponseEntity<PessoaDTO> atualizarPorId(String uuid, Pessoa pessoa) {
-
-        this.validateUsertoSave(pessoa);
-
-        if (repository.existsById(uuid)) {
-            pessoa.setUuid(uuid);
-            repository.save(this.cleanDataToSave(pessoa));
-            return ResponseEntity.status(HttpStatus.OK).build();// Demostrando outras formas de implementar
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();// Demostrando outras formas de implementar
-    }
-
-    @Override
-    public ResponseEntity<Void> removerPorId(String uuid) {
-        try {
-            repository.deleteById(uuid);
-        } catch (Exception e) {
-            throw new NegocioException("Pessoa não encontrada!");
-        }
-
-        return ResponseEntity.noContent().build();
-    }
-
-    @Override
-    public PessoaDTO toDTO(Pessoa pessoa) {
-        return modelmapper.map(pessoa, PessoaDTO.class);
-    }
-
-    @Override
-    public List<PessoaDTO> toListDTO(List<Pessoa> pessoas) {
-        return pessoas.stream().map(this::toDTO).collect(Collectors.toList());
-    }
-
-    private void validateUsertoSave(Pessoa pessoa) {
-        if (pessoa.getName().trim().isEmpty())
-            throw new NegocioException("Name cannot be empty");
-
-        if (pessoa.getAge() == null || pessoa.getAge() <= 0 || pessoa.getAge() > 120)
-            throw new NegocioException("Invalid age, enter an age between 1 and 120 years.");
-    }
-
-    private Pessoa cleanDataToSave(Pessoa pessoa) {
-        pessoa.setCreatedAt(LocalDateTime.now());
-        pessoa.setName(pessoa.getName().trim());
-        return pessoa;
-    }
-
-    public Pessoa buscarPorIdMock(String uuid) {
-        return new Pessoa(uuid, "Leonardo", 21, LocalDateTime.now());
-    }
+	public Pessoa buscarPorIdMock(String uuid) {
+		return new Pessoa(uuid, "Username", 21, "username@gmail.com", LocalDateTime.now(), LocalDateTime.now());
+	}
 }
